@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page & Pine Library</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f1;
+    color: #24352b;
+    line-height: 1.6;
+}
+
+header {
+    background: #183d30;
+    color: white;
+    padding: 25px 8%;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+nav {
+    background: #275744;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.hero {
+    padding: 45px 8%;
+    text-align: center;
+    background: #e2ebdf;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+h2.section-title {
+    margin-bottom: 20px;
+    color: #183d30;
+}
+
+.search-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid #bdc9be;
+    border-radius: 6px;
+    font-size: 15px;
+    background: white;
+    width: 100%;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 22px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px #00000012;
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.cover {
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cover1 { background: #9c493d; }
+.cover2 { background: #386b83; }
+.cover3 { background: #bd8b35; }
+.cover4 { background: #526b48; }
+.cover5 { background: #65508a; }
+.cover6 { background: #a45f80; }
+
+.book-info {
+    padding: 18px;
+}
+
+.book-info h3 {
+    margin-bottom: 5px;
+}
+
+.book-info p {
+    color: #647067;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.available {
+    background: #d8f3df;
+    color: #176534;
+}
+
+.checked {
+    background: #ffe0dc;
+    color: #a12b24;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: left;
+    border: 1px solid #dce3dc;
+}
+
+th {
+    background: #275744;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #edf2ec;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.rules {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 35px;
+}
+
+.rules ul {
+    padding-left: 22px;
+}
+
+.rules li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background: #183d30;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 27px; }
+    nav a {
+        display: inline-block;
+        margin: 5px 8px;
+    }
+    .hero h2 { font-size: 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 Page & Pine Library</h1>
+    <p>Your gateway to knowledge and imagination</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#books">Books</a>
+    <a href="#catalog">Catalog</a>
+    <a href="#rules">Library Rules</a>
+</nav>
+
+<section class="hero" id="home">
+    <h2>Discover Your Next Great Read</h2>
+    <p>Explore our collection of books, learn new things, and enjoy reading.</p>
+</section>
+
+<main class="container">
+
+<section id="books">
+    <h2 class="section-title">Find Your Book</h2>
+
+    <div class="search-area">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search title or author..."
+            aria-label="Search books"
+        >
+
+        <select id="category" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Self-help">Self-help</option>
+            <option value="Technology">Technology</option>
+        </select>
+
+        <select id="availability" aria-label="Filter by availability">
+            <option value="all">All Availability</option>
+            <option value="Available">Available</option>
+            <option value="Checked out">Checked out</option>
+        </select>
+    </div>
+
+    <div class="book-grid" id="bookGrid">
+
+        <article class="book-card"
+            data-title="The Great Gatsby"
+            data-author="F. Scott Fitzgerald"
+            data-category="Fiction"
+            data-status="Available">
+            <div class="cover cover1">THE GREAT GATSBY</div>
+            <div class="book-info">
+                <h3>The Great Gatsby</h3>
+                <p>Author: F. Scott Fitzgerald</p>
+                <p>Category: Fiction</p>
+                <p>Year: 1925</p>
+                <span class="status available">Available</span>
+            </div>
+        </article>
+
+        <article class="book-card"
+            data-title="A Brief History of Time"
+            data-author="Stephen Hawking"
+            data-category="Science"
+            data-status="Checked out">
+            <div class="cover cover2">A BRIEF HISTORY OF TIME</div>
+            <div class="book-info">
+                <h3>A Brief History of Time</h3>
+                <p>Author: Stephen Hawking</p>
+                <p>Category: Science</p>
+                <p>Year: 1988</p>
+                <span class="status checked">Checked out</span>
+            </div>
+        </article>
+
+        <article class="book-card"
+            data-title="Wings of Fire"
+            data-author="A. P. J. Abdul Kalam"
+            data-category="History"
+            data-status="Available">
+            <div class="cover cover3">WINGS OF FIRE</div>
+            <div class="book-info">
+                <h3>Wings of Fire</h3>
+                <p>Author: A. P. J. Abdul Kalam</p>
+                <p>Category: History</p>
+                <p>Year: 1999</p>
+                <span class="status available">Available</span>
+            </div>
+        </article>
+
+        <article class="book-card"
+            data-title="Atomic Habits"
+            data-author="James Clear"
+            data-category="Self-help"
+            data-status="Available">
+            <div class="cover cover4">ATOMIC HABITS</div>
+            <div class="book-info">
+                <h3>Atomic Habits</h3>
+                <p>Author: James Clear</p>
+                <p>Category: Self-help</p>
+                <p>Year: 2018</p>
+                <span class="status available">Available</span>
+            </div>
+        </article>
+
+        <article class="book-card"
+            data-title="Clean Code"
+            data-author="Robert C. Martin"
+            data-category="Technology"
+            data-status="Checked out">
+            <div class="cover cover5">CLEAN CODE</div>
+            <div class="book-info">
+                <h3>Clean Code</h3>
+                <p>Author: Robert C. Martin</p>
+                <p>Category: Technology</p>
+                <p>Year: 2008</p>
+                <span class="status checked">Checked out</span>
+            </div>
+        </article>
+
+        <article class="book-card"
+            data-title="Pride and Prejudice"
+            data-author="Jane Austen"
+            data-category="Fiction"
+            data-status="Available">
+            <div class="cover cover6">PRIDE AND PREJUDICE</div>
+            <div class="book-info">
+                <h3>Pride and Prejudice</h3>
+                <p>Author: Jane Austen</p>
+                <p>Category: Fiction</p>
+                <p>Year: 1813</p>
+                <span class="status available">Available</span>
+            </div>
+        </article>
+
+    </div>
+
+    <p id="noResults" style="display:none; margin-top:20px;">
+        No books found. Try another search.
+    </p>
+</section>
+
+<section id="catalog" style="margin-top:45px;">
+    <h2 class="section-title">Library Catalog</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Year</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody id="catalogBody">
+                <tr data-category="Fiction" data-status="Available">
+                    <td>B001</td>
+                    <td>The Great Gatsby</td>
+                    <td>F. Scott Fitzgerald</td>
+                    <td>Fiction</td>
+                    <td>1925</td>
+                    <td>Available</td>
+                </tr>
+                <tr data-category="Science" data-status="Checked out">
+                    <td>B002</td>
+                    <td>A Brief History of Time</td>
+                    <td>Stephen Hawking</td>
+                    <td>Science</td>
+                    <td>1988</td>
+                    <td>Checked out</td>
+                </tr>
+                <tr data-category="History" data-status="Available">
+                    <td>B003</td>
+                    <td>Wings of Fire</td>
+                    <td>A. P. J. Abdul Kalam</td>
+                    <td>History</td>
+                    <td>1999</td>
+                    <td>Available</td>
+                </tr>
+                <tr data-category="Self-help" data-status="Available">
+                    <td>B004</td>
+                    <td>Atomic Habits</td>
+                    <td>James Clear</td>
+                    <td>Self-help</td>
+                    <td>2018</td>
+                    <td>Available</td>
+                </tr>
+                <tr data-category="Technology" data-status="Checked out">
+                    <td>B005</td>
+                    <td>Clean Code</td>
+                    <td>Robert C. Martin</td>
+                    <td>Technology</td>
+                    <td>2008</td>
+                    <td>Checked out</td>
+                </tr>
+                <tr data-category="Fiction" data-status="Available">
+                    <td>B006</td>
+                    <td>Pride and Prejudice</td>
+                    <td>Jane Austen</td>
+                    <td>Fiction</td>
+                    <td>1813</td>
+                    <td>Available</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="rules" id="rules">
+    <h2 class="section-title">📖 Library Rules</h2>
+    <ul>
+        <li>Students may borrow up to three books at a time.</li>
+        <li>The standard borrowing period is 14 days.</li>
+        <li>Return books on or before the due date.</li>
+        <li>Keep books clean and avoid writing on their pages.</li>
+        <li>Maintain silence inside the library.</li>
+        <li>Report lost or damaged books to the librarian.</li>
+        <li>Return books to the designated counter.</li>
+    </ul>
+    <p><em>Note: These are sample library rules and can be customized.</em></p>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 Page & Pine Library | Read, Learn, Grow.</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById("search");
+const categorySelect = document.getElementById("category");
+const availabilitySelect = document.getElementById("availability");
+
+function filterBooks() {
+    const query = searchInput.value.toLowerCase().trim();
+    const category = categorySelect.value;
+    const availability = availabilitySelect.value;
+
+    let visibleBooks = 0;
+
+    document.querySelectorAll(".book-card").forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const author = card.dataset.author.toLowerCase();
+
+        const matchesSearch =
+            title.includes(query) || author.includes(query);
+
+        const matchesCategory =
+            category === "all" || card.dataset.category === category;
+
+        const matchesAvailability =
+            availability === "all" ||
+            card.dataset.status === availability;
+
+        const show =
+            matchesSearch && matchesCategory && matchesAvailability;
+
+        card.style.display = show ? "" : "none";
+
+        if (show) visibleBooks++;
+    });
+
+    document.getElementById("noResults").style.display =
+        visibleBooks === 0 ? "block" : "none";
+
+    document.querySelectorAll("#catalogBody tr").forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const matchesSearch = text.includes(query);
+        const matchesCategory =
+            category === "all" || row.dataset.category === category;
+        const matchesAvailability =
+            availability === "all" ||
+            row.dataset.status === availability;
+
+        row.style.display =
+            matchesSearch && matchesCategory && matchesAvailability
+                ? ""
+                : "none";
+    });
+}
+
+searchInput.addEventListener("input", filterBooks);
+categorySelect.addEventListener("change", filterBooks);
+availabilitySelect.addEventListener("change", filterBooks);
+</script>
+
+</body>
+</html>
